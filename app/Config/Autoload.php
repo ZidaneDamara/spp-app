@@ -76,7 +76,8 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $files = [APPPATH . 'Helpers/spp_helper.php'];
+    public $files = [APPPATH . 'Helpers/spp_helper.php',
+                     APPPATH . 'Helpers/avatar_helpers.php'];
 
     /**
      * -------------------------------------------------------------------
@@ -109,5 +110,5 @@ class Autoload extends AutoloadConfig
 
         $this->psr4 = array_merge($this->psr4, $psr4);
     }
-    public $helpers = [];
+    public $helpers = ['avatar','spp'];
 }

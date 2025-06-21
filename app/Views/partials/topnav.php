@@ -18,8 +18,12 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-apps">
 
+                                        <a href="<?= base_url('kelas') ?>" class="dropdown-item"><i
+                                                class="fe-clipboard mr-1"></i> Data Kelas</a>
                                         <a href="<?= base_url('siswa') ?>" class="dropdown-item"><i
                                                 class="fe-clipboard mr-1"></i> Data Siswa</a>
+                                        <a href="<?= base_url('user') ?>" class="dropdown-item"><i
+                                                class="fe-clipboard mr-1"></i> Data User</a>
 
                                     </div>
                                 </li>

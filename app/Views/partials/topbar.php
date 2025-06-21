@@ -149,14 +149,21 @@
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">
+                <?php
+                $fotoUser = session()->get('foto');
+                $uploadPath = FCPATH . 'uploads/foto/' . $fotoUser;
+                $fotoPath = !empty($fotoUser) && file_exists($uploadPath) ? base_url('uploads/foto/' . $fotoUser) : base_url('assets/images/users/user-1.jpg');
+                ?>
+
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
-                    href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="<?= base_url('assets/images/users/user-1.jpg') ?>" alt="user-image"
-                        class="rounded-circle">
+                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="<?= $fotoPath ?>" alt="user-image" class="rounded-circle" width="32"
+                        height="32">
                     <span class="pro-user-name ml-1">
-                        <?= session()->get('nama_user') ?>  <i class="mdi mdi-chevron-down"></i>
+                        <?= session()->get('nama_user') ?> <i class="mdi mdi-chevron-down"></i>
                     </span>
                 </a>
+
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
                     <div class="dropdown-header noti-title">

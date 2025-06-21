@@ -40,7 +40,7 @@ class Auth extends BaseController
 
         if ($user && password_verify($password, $user['password'])) {
             $sessionData = [
-                'user_id' => $user['id_user'],
+                'id_user' => $user['id_user'],
                 'username' => $user['username'],
                 'nama_user' => $user['nama_user'],
                 'role' => $user['role'],

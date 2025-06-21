@@ -29,23 +29,25 @@ $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
     
     // Kelas
     $routes->get('kelas', 'Kelas::index', ['filter' => 'auth']);
+    $routes->get('kelas/create', 'Kelas::create', ['filter' => 'auth']);
     $routes->post('kelas/store', 'Kelas::store', ['filter' => 'auth']);
+    $routes->get('kelas/edit/(:num)', 'Kelas::edit/$1', ['filter' => 'auth']);
     $routes->post('kelas/update/(:num)', 'Kelas::update/$1', ['filter' => 'auth']);
     $routes->delete('kelas/delete/(:num)', 'Kelas::delete/$1', ['filter' => 'auth']);
     
     // Tahun Ajaran
-    $routes->get('tahun-ajaran', 'Master\TahunAjaran::index', ['filter' => 'auth']);
-    $routes->post('tahun-ajaran/store', 'Master\TahunAjaran::store', ['filter' => 'auth']);
-    $routes->post('tahun-ajaran/update/(:num)', 'Master\TahunAjaran::update/$1', ['filter' => 'auth']);
-    $routes->delete('tahun-ajaran/delete/(:num)', 'Master\TahunAjaran::delete/$1', ['filter' => 'auth']);
+    $routes->get('tahun-ajaran', 'TahunAjaran::index', ['filter' => 'auth']);
+    $routes->post('tahun-ajaran/store', 'TahunAjaran::store', ['filter' => 'auth']);
+    $routes->post('tahun-ajaran/update/(:num)', 'TahunAjaran::update/$1', ['filter' => 'auth']);
+    $routes->delete('tahun-ajaran/delete/(:num)', 'TahunAjaran::delete/$1', ['filter' => 'auth']);
     
     // User
-    $routes->get('user', 'Master\User::index', ['filter' => 'auth']);
-    $routes->get('user/create', 'Master\User::create', ['filter' => 'auth']);
-    $routes->post('user/store', 'Master\User::store', ['filter' => 'auth']);
-    $routes->get('user/edit/(:num)', 'Master\User::edit/$1', ['filter' => 'auth']);
-    $routes->post('user/update/(:num)', 'Master\User::update/$1', ['filter' => 'auth']);
-    $routes->delete('user/delete/(:num)', 'Master\User::delete/$1', ['filter' => 'auth']);
+    $routes->get('user', 'User::index', ['filter' => 'auth']);
+    $routes->get('user/create', 'User::create', ['filter' => 'auth']);
+    $routes->post('user/store', 'User::store', ['filter' => 'auth']);
+    $routes->get('user/edit/(:num)', 'User::edit/$1', ['filter' => 'auth']);
+    $routes->post('user/update/(:num)', 'User::update/$1', ['filter' => 'auth']);
+    $routes->delete('user/delete/(:num)', 'User::delete/$1', ['filter' => 'auth']);
 
 // SPP Management routes
 $routes->group('spp', ['filter' => 'auth'], function($routes) {

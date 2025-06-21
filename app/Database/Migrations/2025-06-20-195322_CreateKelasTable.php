@@ -29,8 +29,8 @@ class CreateKelasTable extends Migration
                 'null'       => true,
             ],
             'wali_kelas' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
+                'type'       => 'INT',
+                'unsigned'   => true,
                 'null'       => true,
             ],
             'status' => [
@@ -39,33 +39,116 @@ class CreateKelasTable extends Migration
                 'default'    => 'aktif',
             ],
             'created_at' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type'    => 'DATETIME',
+                'null'    => true,
             ],
             'updated_at' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type'    => 'DATETIME',
+                'null'    => true,
             ],
         ]);
 
         $this->forge->addKey('id_kelas', true);
         $this->forge->addUniqueKey('nama_kelas');
+
+        // Foreign key wali_kelas ke user.id_user
+        $this->forge->addForeignKey('wali_kelas', 'user', 'id_user', 'CASCADE', 'SET NULL');
+
         $this->forge->createTable('kelas');
 
-        // Insert default kelas
-        $data = [
-            ['nama_kelas' => 'X IPA 1', 'tingkat' => 'X', 'jurusan' => 'IPA', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'X IPA 2', 'tingkat' => 'X', 'jurusan' => 'IPA', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'X IPS 1', 'tingkat' => 'X', 'jurusan' => 'IPS', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'XI IPA 1', 'tingkat' => 'XI', 'jurusan' => 'IPA', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'XI IPA 2', 'tingkat' => 'XI', 'jurusan' => 'IPA', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'XI IPS 1', 'tingkat' => 'XI', 'jurusan' => 'IPS', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'XII IPA 1', 'tingkat' => 'XII', 'jurusan' => 'IPA', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'XII IPA 2', 'tingkat' => 'XII', 'jurusan' => 'IPA', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['nama_kelas' => 'XII IPS 1', 'tingkat' => 'XII', 'jurusan' => 'IPS', 'status' => 'aktif', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-        ];
-
-        $this->db->table('kelas')->insertBatch($data);
+        // Insert 10 data default
+        $this->db->table('kelas')->insertBatch([
+            [
+                'nama_kelas'  => 'XII IPA 1',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 4,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 2',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 5,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 3',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 6,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 4',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 7,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 5',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 8,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 6',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 9,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 7',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 10,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 8',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 11,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 9',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 12,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_kelas'  => 'XII IPA 10',
+                'tingkat'     => 'XII',
+                'jurusan'     => 'IPA',
+                'wali_kelas'  => 13,
+                'status'      => 'aktif',
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
+        ]);
     }
 
     public function down()

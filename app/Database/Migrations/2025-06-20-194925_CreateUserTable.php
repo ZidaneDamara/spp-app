@@ -29,7 +29,7 @@ class CreateUserTable extends Migration
             ],
             'role' => [
                 'type'       => 'ENUM',
-                'constraint' => ['admin', 'bendahara', 'operator'],
+                'constraint' => ['admin', 'bendahara', 'operator', 'guru'],
                 'default'    => 'operator',
             ],
             'foto' => [
@@ -57,7 +57,7 @@ class CreateUserTable extends Migration
         $this->forge->addUniqueKey('username');
         $this->forge->createTable('user');
 
-        // Insert default users (boleh di migration kalau memang dibutuhkan langsung)
+        // Insert default users + 10 guru
         $this->db->table('user')->insertBatch([
             [
                 'username'   => 'admin',
@@ -82,6 +82,97 @@ class CreateUserTable extends Migration
                 'password'   => password_hash('operator123', PASSWORD_DEFAULT),
                 'nama_user'  => 'Operator SPP',
                 'role'       => 'operator',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            // 10 guru
+            [
+                'username'   => 'guru1',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Budi Santoso',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru2',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Dewi Lestari',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru3',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Agus Wirawan',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru4',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Siti Nurhaliza',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru5',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Rahmat Hidayat',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru6',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Nur Aini',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru7',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Dedi Mulyadi',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru8',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Sri Wahyuni',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru9',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Fajar Ramadhan',
+                'role'       => 'guru',
+                'status'     => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'username'   => 'guru10',
+                'password'   => password_hash('guru123', PASSWORD_DEFAULT),
+                'nama_user'  => 'Lina Marlina',
+                'role'       => 'guru',
                 'status'     => 'aktif',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

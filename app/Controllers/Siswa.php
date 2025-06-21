@@ -20,8 +20,7 @@ class Siswa extends BaseController
     public function index()
     {
         $data = [
-            
-            'siswa' => $this->siswaModel->getSiswaWithKelas()
+            'siswa' => $this->siswaModel->getSiswaWithKelas(),
         ];
 
         return view('siswa/index', $data);
@@ -30,7 +29,7 @@ class Siswa extends BaseController
     public function create()
     {
         $data = [
-            'kelas' => $this->kelasModel->findAll()
+            'kelas' => $this->kelasModel->findAll(),
         ];
 
         return view('siswa/create', $data);
@@ -38,9 +37,23 @@ class Siswa extends BaseController
 
     public function store()
     {
-        if (!$this->siswaModel->save($this->request->getPost())) {
-            return redirect()->back()->withInput()->with('errors', $this->siswaModel->errors());
+        $validation = \Config\Services::validation();
+        if (!$this->validate($this->siswaModel->getValidationRules())) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
+
+        // upload foto
+        $fileFoto = $this->request->getFile('foto');
+        $namaFoto = 'default.png';
+        if ($fileFoto && $fileFoto->isValid() && !$fileFoto->hasMoved()) {
+            $namaFoto = $fileFoto->getRandomName();
+            $fileFoto->move('uploads/siswa', $namaFoto);
+        }
+
+        $data = $this->request->getPost();
+        $data['foto'] = $namaFoto;
+
+        $this->siswaModel->save($data);
 
         return redirect()->to('/siswa')->with('success', 'Data siswa berhasil ditambahkan!');
     }
@@ -53,14 +66,8 @@ class Siswa extends BaseController
         }
 
         $data = [
-            'title' => 'Edit Siswa',
-            'breadcrumb' => [
-                ['title' => 'Master Data', 'url' => '#'],
-                ['title' => 'Data Siswa', 'url' => base_url('siswa')],
-                ['title' => 'Edit Siswa']
-            ],
             'siswa' => $siswa,
-            'kelas' => $this->kelasModel->findAll()
+            'kelas' => $this->kelasModel->findAll(),
         ];
 
         return view('siswa/edit', $data);
@@ -68,18 +75,72 @@ class Siswa extends BaseController
 
     public function update($id)
     {
-        if (!$this->siswaModel->update($id, $this->request->getPost())) {
-            return redirect()->back()->withInput()->with('errors', $this->siswaModel->errors());
+        $siswaLama = $this->siswaModel->find($id);
+        if (!$siswaLama) {
+            return redirect()->to('/siswa')->with('error', 'Data siswa tidak ditemukan!');
         }
+
+        $validation = \Config\Services::validation();
+
+        $validationRules = [
+            'nis' => [
+                'rules' => "required|is_unique[siswa.nis,id_siswa,{$id}]",
+                'errors' => [
+                    'required' => 'NIS harus diisi',
+                    'is_unique' => 'NIS sudah digunakan oleh siswa lain',
+                ],
+            ],
+            'nisn' => [
+                'rules' => "permit_empty|is_unique[siswa.nisn,id_siswa,{$id}]",
+                'errors' => [
+                    'is_unique' => 'NISN sudah digunakan oleh siswa lain',
+                ],
+            ],
+            'nama' => 'required|min_length[3]|max_length[100]',
+            'kelas_id' => 'required|integer',
+            'status' => 'required|in_list[aktif,lulus,keluar,mutasi]',
+        ];
+
+        if (!$this->validate($validationRules)) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        $data = $this->request->getPost();
+
+        // Upload foto baru kalau ada
+        $fileFoto = $this->request->getFile('foto');
+        if ($fileFoto && $fileFoto->isValid() && !$fileFoto->hasMoved()) {
+            $namaFoto = $fileFoto->getRandomName();
+            $fileFoto->move('uploads/siswa', $namaFoto);
+
+            // Hapus foto lama kalau bukan default
+            if (!empty($siswaLama['foto']) && $siswaLama['foto'] != 'default.png') {
+                @unlink('uploads/siswa/' . $siswaLama['foto']);
+            }
+
+            $data['foto'] = $namaFoto;
+        } else {
+            $data['foto'] = $siswaLama['foto'];
+        }
+
+        $this->siswaModel->update($id, $data);
 
         return redirect()->to('/siswa')->with('success', 'Data siswa berhasil diupdate!');
     }
 
     public function delete($id)
     {
-        if (!$this->siswaModel->delete($id)) {
-            return redirect()->back()->with('error', 'Gagal menghapus data siswa!');
+        $siswa = $this->siswaModel->find($id);
+        if (!$siswa) {
+            return redirect()->back()->with('error', 'Data siswa tidak ditemukan!');
         }
+
+        // hapus foto jika bukan default
+        if ($siswa['foto'] != 'default.png') {
+            @unlink('uploads/siswa/' . $siswa['foto']);
+        }
+
+        $this->siswaModel->delete($id);
 
         return redirect()->to('/siswa')->with('success', 'Data siswa berhasil dihapus!');
     }
