@@ -2,48 +2,63 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+use App\Controllers\BaseController;
 
 class Auth extends BaseController
 {
+    protected $userModel;
+
+    public function __construct()
+    {
+        $this->userModel = new \App\Models\UserModel();
+    }
+
     public function index()
     {
+        if (session()->get('logged_in')) {
+            return redirect()->to('/dashboard');
+        }
+
         return view('login');
     }
 
-    public function proses()
+    public function login()
     {
-        $session = session();
-        $model = new User();
+        $rules = [
+            'username' => 'required',
+            'password' => 'required'
+        ];
 
-        $email = $this->request->getPost('email');
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        // Cek ke database
-        $user = $model->where('email', $email)->first();
+        $user = $this->userModel->where('username', $username)->first();
 
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                // Simpan data ke session
-                $sessionData = [
-                    'id'       => $user['id'],
-                    'email' => $user['email'],
-                    'logged_in'=> true,
-                ];
-                $session->set($sessionData);
+        if ($user && password_verify($password, $user['password'])) {
+            $sessionData = [
+                'user_id' => $user['id_user'],
+                'username' => $user['username'],
+                'nama_user' => $user['nama_user'],
+                'role' => $user['role'],
+                'foto' => $user['foto'],
+                'logged_in' => true
+            ];
 
-                return redirect()->to('/dashboard');
-            } else {
-                return redirect()->back()->with('error', 'Password salah');
-            }
+            session()->set($sessionData);
+
+            return redirect()->to('/dashboard')->with('success', 'Login berhasil!');
         } else {
-            return redirect()->back()->with('error', 'Email tidak ditemukan');
+            return redirect()->back()->withInput()->with('error', 'Username atau password salah!');
         }
     }
 
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to('/login')->with('success', 'Logout berhasil!');
     }
 }

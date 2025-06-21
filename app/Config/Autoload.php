@@ -38,7 +38,8 @@ class Autoload extends AutoloadConfig
      * @var array<string, list<string>|string>
      */
     public $psr4 = [
-        APP_NAMESPACE => APPPATH,
+        APP_NAMESPACE => APPPATH, // For custom app namespace
+        'Config' => APPPATH . 'Config',
     ];
 
     /**
@@ -75,7 +76,7 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $files = [];
+    public $files = [APPPATH . 'Helpers/spp_helper.php'];
 
     /**
      * -------------------------------------------------------------------
@@ -88,5 +89,25 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        /**
+         * -------------------------------------------------------------------
+         * Namespaces
+         * -------------------------------------------------------------------
+         * This maps the locations of any namespaces in your application to
+         * their location on the file system. These are used by the autoloader
+         * to locate files the first time they have been instantiated.
+         */
+        $psr4 = [
+            'App' => APPPATH,
+            'Config' => APPPATH . 'Config',
+        ];
+
+        $this->psr4 = array_merge($this->psr4, $psr4);
+    }
     public $helpers = [];
 }

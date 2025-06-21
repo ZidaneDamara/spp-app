@@ -1,0 +1,111 @@
+<?php
+
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
+
+class SiswaSeeder extends Seeder
+{
+    public function run()
+    {
+        $data = [
+            [
+                'nis' => '2024001',
+                'nisn' => '0123456789',
+                'nama' => 'Ahmad Rizki Pratama',
+                'jenis_kelamin' => 'L',
+                'tempat_lahir' => 'Jakarta',
+                'tanggal_lahir' => '2008-05-15',
+                'alamat' => 'Jl. Merdeka No. 123, Jakarta Pusat',
+                'no_hp' => '081234567890',
+                'email' => 'ahmad.rizki@email.com',
+                'nama_ayah' => 'Budi Pratama',
+                'nama_ibu' => 'Siti Nurhaliza',
+                'no_hp_ortu' => '081234567891',
+                'kelas_id' => 1,
+                'tahun_masuk' => 2024,
+                'status' => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nis' => '2024002',
+                'nisn' => '0123456790',
+                'nama' => 'Sari Dewi Lestari',
+                'jenis_kelamin' => 'P',
+                'tempat_lahir' => 'Bandung',
+                'tanggal_lahir' => '2008-08-20',
+                'alamat' => 'Jl. Sudirman No. 456, Jakarta Selatan',
+                'no_hp' => '081234567892',
+                'email' => 'sari.dewi@email.com',
+                'nama_ayah' => 'Agus Lestari',
+                'nama_ibu' => 'Rina Sari',
+                'no_hp_ortu' => '081234567893',
+                'kelas_id' => 1,
+                'tahun_masuk' => 2024,
+                'status' => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nis' => '2024003',
+                'nisn' => '0123456791',
+                'nama' => 'Muhammad Fajar Sidiq',
+                'jenis_kelamin' => 'L',
+                'tempat_lahir' => 'Surabaya',
+                'tanggal_lahir' => '2008-03-10',
+                'alamat' => 'Jl. Thamrin No. 789, Jakarta Pusat',
+                'no_hp' => '081234567894',
+                'email' => 'fajar.sidiq@email.com',
+                'nama_ayah' => 'Hasan Sidiq',
+                'nama_ibu' => 'Fatimah',
+                'no_hp_ortu' => '081234567895',
+                'kelas_id' => 2,
+                'tahun_masuk' => 2024,
+                'status' => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nis' => '2024004',
+                'nisn' => '0123456792',
+                'nama' => 'Putri Maharani',
+                'jenis_kelamin' => 'P',
+                'tempat_lahir' => 'Medan',
+                'tanggal_lahir' => '2008-12-05',
+                'alamat' => 'Jl. Gatot Subroto No. 321, Jakarta Selatan',
+                'no_hp' => '081234567896',
+                'email' => 'putri.maharani@email.com',
+                'nama_ayah' => 'Dedi Maharani',
+                'nama_ibu' => 'Lilis Suryani',
+                'no_hp_ortu' => '081234567897',
+                'kelas_id' => 2,
+                'tahun_masuk' => 2024,
+                'status' => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nis' => '2024005',
+                'nisn' => '0123456793',
+                'nama' => 'Andi Kurniawan',
+                'jenis_kelamin' => 'L',
+                'tempat_lahir' => 'Makassar',
+                'tanggal_lahir' => '2008-07-25',
+                'alamat' => 'Jl. Kuningan No. 654, Jakarta Selatan',
+                'no_hp' => '081234567898',
+                'email' => 'andi.kurniawan@email.com',
+                'nama_ayah' => 'Bayu Kurniawan',
+                'nama_ibu' => 'Dewi Sartika',
+                'no_hp_ortu' => '081234567899',
+                'kelas_id' => 3,
+                'tahun_masuk' => 2024,
+                'status' => 'aktif',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+        ];
+
+        $this->db->table('siswa')->insertBatch($data);
+    }
+}
