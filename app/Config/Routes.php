@@ -85,3 +85,19 @@ $routes->group('laporan', ['filter' => 'auth'], function($routes) {
     $routes->get('keuangan', 'Laporan\Keuangan::index');
     $routes->get('jurnal', 'Laporan\Jurnal::index');
 });
+
+// Jenis Akun routes
+$routes->get('tipe-akun', 'TipeAkun::index', ['filter' => 'auth']);
+$routes->get('tipe-akun/create', 'TipeAkun::create', ['filter' => 'auth']);
+$routes->post('tipe-akun/store', 'TipeAkun::store', ['filter' => 'auth']);
+$routes->get('tipe-akun/edit/(:num)', 'TipeAkun::edit/$1', ['filter' => 'auth']);
+$routes->post('tipe-akun/update/(:num)', 'TipeAkun::update/$1', ['filter' => 'auth']);
+$routes->get('tipe-akun/delete/(:num)', 'TipeAkun::delete/$1', ['filter' => 'auth']);
+
+// Akun routes
+$routes->get('akun', 'Akun::index', ['filter' => 'auth']);
+$routes->get('akun/create', 'Akun::create', ['filter' => 'auth']);
+$routes->post('akun/store', 'Akun::store', ['filter' => 'auth']);
+$routes->get('akun/edit/(:num)', 'Akun::edit/$1', ['filter' => 'auth']);
+$routes->post('akun/update/(:num)', 'Akun::update/$1', ['filter' => 'auth']);
+$routes->get('akun/delete/(:num)', 'Akun::delete/$1', ['filter' => 'auth']);

@@ -25,13 +25,13 @@
 
         <!-- Notifikasi error -->
         <?php if (session()->getFlashdata('errors')): ?>
-            <div class="alert alert-danger">
-                <ul>
-                    <?php foreach (session()->getFlashdata('errors') as $error): ?>
-                        <li><?= esc($error) ?></li>
-                    <?php endforeach ?>
-                </ul>
-            </div>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                <li><?= esc($error) ?></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
         <?php endif ?>
 
         <form action="<?= base_url('kelas/store') ?>" method="post">
@@ -47,7 +47,8 @@
 
                             <div class="form-group col-md-6">
                                 <label>Nama Kelas <span class="text-danger">*</span></label>
-                                <input type="text" name="nama_kelas" class="form-control" value="<?= old('nama_kelas') ?>" required>
+                                <input type="text" name="nama_kelas" class="form-control"
+                                    value="<?= old('nama_kelas') ?>" required>
                             </div>
 
                             <div class="form-group col-md-6">
@@ -70,9 +71,10 @@
                                 <select name="id_wali_kelas" class="form-control">
                                     <option value="">-- Pilih Wali Kelas --</option>
                                     <?php foreach($wali_kelas as $wali): ?>
-                                        <option value="<?= $wali['id_wali_kelas'] ?>" <?= old('wali_kelas') == $wali['id_wali_kelas'] ? 'selected' : '' ?>>
-                                            <?= esc($wali['nama_user']) ?>
-                                        </option>
+                                    <option value="<?= $wali['id_walikelas'] ?>"
+                                        <?= old('id_wali_kelas') == $wali['id_walikelas'] ? 'selected' : '' ?>>
+                                        <?= esc($wali['nama_user']) ?>
+                                    </option>
                                     <?php endforeach ?>
                                 </select>
                                 <small class="text-muted">Hanya guru yang belum jadi wali kelas</small>
@@ -82,8 +84,10 @@
                                 <label>Status <span class="text-danger">*</span></label>
                                 <select name="status" class="form-control" required>
                                     <option value="">-- Pilih Status --</option>
-                                    <option value="aktif" <?= old('status') == 'aktif' ? 'selected' : '' ?>>Aktif</option>
-                                    <option value="nonaktif" <?= old('status') == 'nonaktif' ? 'selected' : '' ?>>Nonaktif</option>
+                                    <option value="aktif" <?= old('status') == 'aktif' ? 'selected' : '' ?>>Aktif
+                                    </option>
+                                    <option value="nonaktif" <?= old('status') == 'nonaktif' ? 'selected' : '' ?>>
+                                        Nonaktif</option>
                                 </select>
                             </div>
 

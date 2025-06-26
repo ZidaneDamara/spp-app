@@ -17,7 +17,7 @@
                     <h4 class="page-title">Tambah Data Siswa</h4>
                 </div>
                 <div class="text-right mb-3">
-                    <a href="<?= base_url('siswa/create') ?>" class="btn btn-secondary">Kembali</a>
+                    <a href="<?= base_url('siswa') ?>" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
         </div>
