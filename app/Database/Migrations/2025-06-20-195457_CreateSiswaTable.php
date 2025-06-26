@@ -76,6 +76,7 @@ class CreateSiswaTable extends Migration
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
+                'null'       => true,
             ],
             'tahun_masuk' => [
                 'type'       => 'YEAR',

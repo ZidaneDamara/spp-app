@@ -28,7 +28,7 @@ class CreateKelasTable extends Migration
                 'constraint' => 50,
                 'null'       => true,
             ],
-            'wali_kelas' => [
+            'id_wali_kelas' => [
                 'type'       => 'INT',
                 'unsigned'   => true,
                 'null'       => true,
@@ -52,7 +52,7 @@ class CreateKelasTable extends Migration
         $this->forge->addUniqueKey('nama_kelas');
 
         // Foreign key wali_kelas ke user.id_user
-        $this->forge->addForeignKey('wali_kelas', 'user', 'id_user', 'CASCADE', 'SET NULL');
+        $this->forge->addForeignKey('id_wali_kelas', 'wali_kelas', 'id_walikelas', 'CASCADE', 'SET NULL');
 
         $this->forge->createTable('kelas');
 
@@ -62,7 +62,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 1',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 4,
+                'id_wali_kelas'  => 1,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -71,7 +71,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 2',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 5,
+                'id_wali_kelas'  => 2,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -80,7 +80,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 3',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 6,
+                'id_wali_kelas'  => 3,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -89,7 +89,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 4',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 7,
+                'id_wali_kelas'  => 4,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -98,7 +98,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 5',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 8,
+                'id_wali_kelas'  => 5,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -107,7 +107,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 6',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 9,
+                'id_wali_kelas'  => 6,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -116,7 +116,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 7',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 10,
+                'id_wali_kelas'  => 7,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -125,7 +125,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 8',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 11,
+                'id_wali_kelas'  => 8,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -134,7 +134,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 9',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 12,
+                'id_wali_kelas'  => 9,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
@@ -143,7 +143,7 @@ class CreateKelasTable extends Migration
                 'nama_kelas'  => 'XII IPA 10',
                 'tingkat'     => 'XII',
                 'jurusan'     => 'IPA',
-                'wali_kelas'  => 13,
+                'id_wali_kelas'  => 10,
                 'status'      => 'aktif',
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),

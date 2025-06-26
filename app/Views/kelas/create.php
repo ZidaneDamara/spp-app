@@ -67,10 +67,10 @@
 
                             <div class="form-group col-md-6">
                                 <label>Wali Kelas</label>
-                                <select name="wali_kelas" class="form-control">
+                                <select name="id_wali_kelas" class="form-control">
                                     <option value="">-- Pilih Wali Kelas --</option>
                                     <?php foreach($wali_kelas as $wali): ?>
-                                        <option value="<?= $wali['id_user'] ?>" <?= old('wali_kelas') == $wali['id_user'] ? 'selected' : '' ?>>
+                                        <option value="<?= $wali['id_wali_kelas'] ?>" <?= old('wali_kelas') == $wali['id_wali_kelas'] ? 'selected' : '' ?>>
                                             <?= esc($wali['nama_user']) ?>
                                         </option>
                                     <?php endforeach ?>
