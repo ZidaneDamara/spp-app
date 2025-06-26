@@ -34,6 +34,15 @@ $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
     $routes->get('kelas/edit/(:num)', 'Kelas::edit/$1', ['filter' => 'auth']);
     $routes->post('kelas/update/(:num)', 'Kelas::update/$1', ['filter' => 'auth']);
     $routes->delete('kelas/delete/(:num)', 'Kelas::delete/$1', ['filter' => 'auth']);
+
+    // Walikelas
+    $routes->get('walikelas', 'Walikelas::index', ['filter' => 'auth']);
+    $routes->get('walikelas/create', 'Walikelas::create', ['filter' => 'auth']);
+    $routes->post('walikelas/store', 'Walikelas::store', ['filter' => 'auth']);
+    $routes->get('walikelas/edit/(:num)', 'Walikelas::edit/$1', ['filter' => 'auth']);
+    $routes->post('walikelas/update/(:num)', 'Walikelas::update/$1', ['filter' => 'auth']);
+    $routes->delete('walikelas/delete/(:num)', 'Walikelas::delete/$1', ['filter' => 'auth']);
+    
     
     // Tahun Ajaran
     $routes->get('tahun-ajaran', 'TahunAjaran::index', ['filter' => 'auth']);
